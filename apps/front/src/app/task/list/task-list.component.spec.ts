@@ -26,4 +26,11 @@ describe('TaskComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('tasks links exists', async () => {
+    await fixture.whenStable();
+    fixture.detectChanges();
+    let as = fixture.nativeElement.querySelectorAll('a');
+    expect(as.length).toEqual(2);
+  });
 });
