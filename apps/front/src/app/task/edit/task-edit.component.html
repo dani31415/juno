@@ -1,7 +1,13 @@
 <p>task-edit works!</p>
 <form (ngSubmit)='onSubmit()'>
-    <input type='text' [(ngModel)]='taskService.editForm.model.title' name='title'>
+    <!-- input type='text' [(ngModel)]='taskService.editForm.model.title' name='title'>
     <div>{{taskService.editForm.validations.title}}</div>
-    <input type='submit' value='Save'>
+    <input type='submit' value='Save' -->
+    <mat-form-field class="example-full-width">
+        <mat-label>Favorite food</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="Sushi">
+    </mat-form-field>
 </form>
+<!--
 <div>{{taskService.editForm.model.title}}</div>
+-->
