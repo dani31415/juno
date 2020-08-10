@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task'
+import { Form } from '../form';
 
 export class TaskService {
-  public current : Task;
+  public editForm : Form<Task>;
 
   constructor() { }
 
@@ -22,9 +23,19 @@ export class TaskService {
 
   setCurrentEditId(id: number) {
     console.log('id',id);
-    this.current = {
+    this.editForm = new Form<Task>();
+    this.editForm.model = {
       id,
       title:'hello world'
+    };
+    this.editForm.validate = function() {
+      this.isValid = true;
+      if (this.model.title.length==0) {
+        this.validations.title = 'Cannot be empty';
+        this.isValid = false;
+      } else {
+        this.validations.title = null;
+      }
     }
 
   }

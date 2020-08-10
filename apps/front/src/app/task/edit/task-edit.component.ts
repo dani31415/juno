@@ -18,7 +18,7 @@ export class TaskEditComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
-    //console.log(this.title);
+  onSubmit() {
+    this.taskService.editForm.validate();
   }
 }

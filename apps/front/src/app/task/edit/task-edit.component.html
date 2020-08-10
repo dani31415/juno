@@ -1,3 +1,7 @@
 <p>task-edit works!</p>
-<input type='text' [(ngModel)]='taskService.current.title' name='title'>
-<div>{{taskService.current.title}}</div>
+<form (ngSubmit)='onSubmit()'>
+    <input type='text' [(ngModel)]='taskService.editForm.model.title' name='title'>
+    <div>{{taskService.editForm.validations.title}}</div>
+    <input type='submit' value='Save'>
+</form>
+<div>{{taskService.editForm.model.title}}</div>
