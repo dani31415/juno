@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../task.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'juno-task-edit',
@@ -9,6 +10,7 @@ import { TaskService } from '../task.service';
 })
 export class TaskEditComponent implements OnInit {
   //@ViewChild('title') title;
+  title = new FormControl('',Validators.required);
 
   constructor(private route: ActivatedRoute, public taskService : TaskService) { }
 

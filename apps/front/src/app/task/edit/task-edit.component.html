@@ -5,7 +5,12 @@
     <input type='submit' value='Save' -->
     <mat-form-field class="example-full-width">
         <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
+        <input matInput placeholder="Ex. Pizza" value="Sushi" [formControl]="title">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <div *ngIf="title.errors">
+            <mat-error>Error: fix me</mat-error>
+            <mat-error *ngIf="title.errors.required">Required field</mat-error>
+        </div>
     </mat-form-field>
 </form>
 <!--
