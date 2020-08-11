@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from "@angular/forms"; 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
 import { ActivatedRoute } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { TaskEditComponent } from './task-edit.component';
 import { TaskService } from '../task.service';
@@ -21,7 +24,13 @@ describe('TaskEditComponent', () => {
             }
           }
         } ],
-      imports: [ FormsModule ]
+      imports: [ 
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule 
+      ]
     })
     .compileComponents();
   }));
