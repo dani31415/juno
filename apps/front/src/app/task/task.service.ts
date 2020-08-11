@@ -22,7 +22,7 @@ export class TaskService {
   }
 
   setCurrentEditId(id: number) {
-    console.log('id',id);
+    //console.log('id',id);
     this.editForm = new Form<Task>();
     this.editForm.model = {
       id,

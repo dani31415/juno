@@ -8,7 +8,7 @@ import { TaskListComponent } from './list/task-list.component';
 import { TaskService } from './task.service';
 import { TaskRouterModule } from './task-router.module';
 import { TaskEditComponent } from './edit/task-edit.component';
-
+import { UiModule } from '../ui/ui.module';
 
 @NgModule({
   providers: [
@@ -20,7 +20,8 @@ import { TaskEditComponent } from './edit/task-edit.component';
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    TaskRouterModule
+    TaskRouterModule,
+    UiModule
   ],
   declarations: [
     TaskListComponent,
