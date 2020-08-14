@@ -1,8 +1,7 @@
 <header class="flex">
-  <h1>Welcome to {{ title }}!</h1>
+  <a routerLink='/task/list'>Tasks</a>
 </header>
 <main>
-  <h2>Resources &amp; Tools</h2>
-  <a routerLink='/task/list'>Tasks</a>
+  <router-outlet></router-outlet>  
 </main>
-<router-outlet></router-outlet>
+

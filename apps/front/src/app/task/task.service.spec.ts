@@ -16,16 +16,18 @@ describe('TaskService', () => {
   
   it('edit form validation', () => {
     service.setCurrentEditId(1);
-    service.editForm.validate();
-    expect(service.editForm.isValid).toBeTruthy();
-    expect(service.editForm.validations.title).toBeNull();
-    service.editForm.model.title = '';
-    service.editForm.validate();
-    expect(service.editForm.isValid).not.toBeTruthy();
-    expect(service.editForm.validations.title).not.toBeNull();
-    service.editForm.model.title = 'something';
-    service.editForm.validate();
-    expect(service.editForm.isValid).toBeTruthy();
-    expect(service.editForm.validations.title).toBeNull();
+    expect(service.editForm.formGroup.invalid).not.toBeTruthy(); // valid
+    //service.editForm.validate();
+    //expect(service.editForm.isValid).toBeTruthy();
+    //expect(service.editForm.validations.title).toBeNull();
+    service.editForm.formGroup.controls.title.setValue('');
+    //service.editForm.validate();
+    expect(service.editForm.formGroup.invalid).toBeTruthy(); // invalid
+    //expect(service.editForm.validations.title).not.toBeNull();
+    service.editForm.formGroup.controls.title.setValue('something');
+    expect(service.editForm.formGroup.invalid).not.toBeTruthy(); // valid
+    //service.editForm.validate();
+    //expect(service.editForm.isValid).toBeTruthy();
+    //expect(service.editForm.validations.title).toBeNull();*/
   });
 });

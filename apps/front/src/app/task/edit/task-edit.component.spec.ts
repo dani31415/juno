@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { TaskEditComponent } from './task-edit.component';
@@ -22,9 +22,14 @@ describe('TaskEditComponent', () => {
               subscribe: (func: Function) => func( {id:1} )
             }
           }
-        } ],
+        },
+        {
+          provide: Router,
+          useValue: {}
+        }],
       imports: [ 
         FormsModule,
+        //RouterTestingModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
 

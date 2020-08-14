@@ -13,6 +13,11 @@ const routes: Routes = [
     path: 'edit/:id',
     component: TaskEditComponent
   }
+  ,
+  {
+    path: 'new',
+    component: TaskEditComponent
+  }
 ];
 
 @NgModule({

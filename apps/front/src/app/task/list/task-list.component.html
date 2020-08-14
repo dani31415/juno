@@ -1,5 +1,13 @@
-<p>task works!</p>
-
-<div *ngFor='let task of topTasks'>
-    <a routerLink='/task/edit/{{task.id}}'>{{task.title}}</a>
+<mat-card *ngFor='let task of topTasks' class='multiple-card link' routerLink='/task/edit/{{task.id}}'>
+    <span>{{task.title}}</span>
+    <button mat-button class="delete" (click)='deleteTask(task.id,$event)'>
+        <mat-icon>delete_outline</mat-icon>
+    </button>
+</mat-card>
+<div class="screen-bottom">
+    <div class="container text-right">
+        <button mat-mini-fab color="accent" routerLink='/task/new'>
+            <mat-icon>add_task</mat-icon>
+        </button>
+    </div>
 </div>

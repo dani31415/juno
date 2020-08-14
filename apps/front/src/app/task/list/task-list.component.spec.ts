@@ -1,10 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatIconModule } from '@angular/material/icon'; 
+import { MatCardModule } from '@angular/material/card';
 
 import { TaskListComponent } from './task-list.component';
 import { TaskService } from '../task.service';
+import { UiModule } from '../../ui/ui.module';
 
-describe('TaskComponent', () => {
+describe('TaskListComponent', () => {
   let component: TaskListComponent;
   let fixture: ComponentFixture<TaskListComponent>;
 
@@ -12,7 +15,7 @@ describe('TaskComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TaskListComponent ],
       providers: [ TaskService ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, MatCardModule, MatIconModule, UiModule ]
     })
     .compileComponents();
   }));
@@ -30,7 +33,7 @@ describe('TaskComponent', () => {
   it('tasks links exists', async () => {
     await fixture.whenStable();
     fixture.detectChanges();
-    let as = fixture.nativeElement.querySelectorAll('a');
+    let as = fixture.nativeElement.querySelectorAll('mat-card');
     expect(as.length).toEqual(2);
   });
 });

@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card'
+import { MatIconModule } from '@angular/material/icon'
 
 import { TaskListComponent } from './list/task-list.component';
 import { TaskService } from './task.service';
@@ -21,6 +24,9 @@ import { UiModule } from '../ui/ui.module';
     MatInputModule,
     MatFormFieldModule,
     TaskRouterModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
     UiModule
   ],
   declarations: [
