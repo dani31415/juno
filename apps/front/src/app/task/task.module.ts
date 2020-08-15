@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from '@angular/material/icon'
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { TaskListComponent } from './list/task-list.component';
 import { TaskService } from './task.service';
@@ -29,7 +30,8 @@ import { UiModule } from '../ui/ui.module';
     MatCardModule,
     MatIconModule,
     DragDropModule,
-    UiModule
+    UiModule,
+    CKEditorModule
   ],
   declarations: [
     TaskListComponent,

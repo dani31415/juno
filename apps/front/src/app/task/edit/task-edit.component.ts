@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { AbstractControl, Validators, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
+import * as EditorInline from '@ckeditor/ckeditor5-build-inline';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
 import { TaskService } from '../task.service';
 
@@ -12,6 +14,7 @@ import { TaskService } from '../task.service';
 })
 export class TaskEditComponent implements OnInit {
   //@ViewChild('title') title;
+  public Editor = EditorInline;
   controls : { [K:string]:AbstractControl };
   formGroup: FormGroup;
 
@@ -23,6 +26,10 @@ export class TaskEditComponent implements OnInit {
       this.formGroup = this.taskService.editForm.formGroup;
       this.controls = this.formGroup.controls;
     });
+  }
+
+  ckEditorChange(control: AbstractControl, { editor }: ChangeEvent ) {
+    control.setValue( editor.getData() );
   }
 
   onSubmit() {
