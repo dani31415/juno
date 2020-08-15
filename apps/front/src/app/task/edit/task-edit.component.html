@@ -1,12 +1,14 @@
-<div class="container">
+<!--div class="container"-->
     <form (ngSubmit)='onSubmit()' [formGroup]='formGroup'>
-        <ui-input [control]='controls.title' label='Title' placeholder="Do the laundry">
-        </ui-input>
-        <br>
-        <label>Description</label>
+        <div class='container'>
+            <ui-input [control]='controls.title' label='Title' placeholder="Do the laundry">
+            </ui-input>
+        </div>
+        <label class="container" style="position:relative;top:1ex;">Description</label>
         <ckeditor [config]="{placeholder: 'Type the description here!'}" [editor]='Editor' [data]='controls.description.value' (change)='ckEditorChange(controls.description, $event)'>
         </ckeditor>
-        <br>
-        <button mat-raised-button color="primary">Submit</button>
+        <div class="container">
+            <button mat-raised-button color="primary">Submit</button>
+        </div>
     </form>
-</div>
+<!--div-->

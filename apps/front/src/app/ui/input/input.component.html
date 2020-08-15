@@ -1,7 +1,7 @@
 <mat-form-field class="example-full-width">
     <mat-label>{{ label }}</mat-label>
     <input matInput placeholder="{{ placeholder }}" value="Sushi" [formControl]="control">
-    <mat-hint>{{ hint }}</mat-hint>
+    <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
     <div *ngIf="control.invalid && (control.dirty || control.touched)">
         <mat-error *ngIf="control.errors.required">Required field</mat-error>
     </div>
