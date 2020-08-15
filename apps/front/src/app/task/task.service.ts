@@ -12,14 +12,47 @@ export class TaskService {
       {
         id:1,
         title:'Purchase computer',
-        description:'<b>Dell</b> computer'
+        description:'<b>Dell</b> computer',
+        order:1,
       },
       {
         id:2,
-        title:'Repair plug'
+        title:'Repair plug',
+        order:2,
+      },
+      {
+        id:3,
+        title:'Paint wall',
+        order:3,
       }
     ]
   };
+
+  private sortTasks() {
+    this.db.tasks.sort( (a,b) => a.order-b.order );
+  }
+
+  public setBefore(t1:Task, t2:Task) {
+    let i = this.db.tasks.indexOf(t2);
+    if (i>0) {
+      // between boths
+      t1.order = (this.db.tasks[i-1].order + t2.order)/2;
+    } else {
+      t1.order = t2.order-1;
+    }
+    this.sortTasks();
+  }
+
+  public setAfter(t1:Task, t2:Task) {
+    let i = this.db.tasks.indexOf(t2);
+    if (i<this.db.tasks.length-1) {
+      // between boths
+      t1.order = (this.db.tasks[i+1].order + t2.order)/2;
+    } else {
+      t1.order = t2.order+1;
+    }
+    this.sortTasks();
+  }
 
   private findTaskById(id: number) : Task {
     let task: Task;
@@ -58,7 +91,9 @@ export class TaskService {
     this.db.tasks.splice(index, 1);
   }
 
-  constructor() { }
+  constructor() { 
+    this.sortTasks();
+  }
 
   async getTopTasks() : Promise<Task[]> {
     return this.db.tasks;
@@ -72,6 +107,7 @@ export class TaskService {
       },
       controls: {
         id: new FormControl(),
+        order: new FormControl(),
         title: new FormControl(null,Validators.required),
         description: new FormControl()
       },

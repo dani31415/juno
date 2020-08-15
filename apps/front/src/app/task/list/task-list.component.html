@@ -1,9 +1,11 @@
-<mat-card *ngFor='let task of topTasks' class='multiple-card link' routerLink='/task/edit/{{task.id}}'>
-    <span>{{task.title}}</span>
-    <button mat-button class="delete" (click)='deleteTask(task.id,$event)'>
-        <mat-icon>delete_outline</mat-icon>
-    </button>
-</mat-card>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <mat-card *ngFor='let task of topTasks' cdkDrag class='multiple-card link' routerLink='/task/edit/{{task.id}}'>
+        <span>{{task.title}}</span>
+        <button mat-button class="delete" (click)='deleteTask(task.id,$event)'>
+            <mat-icon>delete_outline</mat-icon>
+        </button>
+    </mat-card>
+</div>
 <div class="screen-bottom">
     <div class="container text-right">
         <button mat-mini-fab color="accent" routerLink='/task/new'>

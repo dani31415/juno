@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { TaskService } from '../task.service';
 import { Task } from '../task';
@@ -24,5 +25,14 @@ export class TaskListComponent implements OnInit {
     if (result) {
       this.taskService.deleteTask(id);
     }
+  }
+
+  drop(event:CdkDragDrop<string[]>) {
+    if (event.currentIndex<event.previousIndex) {
+      this.taskService.setBefore(this.topTasks[event.previousIndex],this.topTasks[event.currentIndex]);
+    } else if (event.currentIndex>event.previousIndex) {
+      this.taskService.setAfter(this.topTasks[event.previousIndex],this.topTasks[event.currentIndex]);
+    }
+    //console.log(event.currentIndex);
   }
 }
