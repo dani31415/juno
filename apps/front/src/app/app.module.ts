@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRouterModule } from './app-router.module';
+import { LoadingService } from './loading.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,7 +13,7 @@ import { AppRouterModule } from './app-router.module';
     BrowserAnimationsModule,
     AppRouterModule
   ],
-  providers: [],
+  providers: [LoadingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
