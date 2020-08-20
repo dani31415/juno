@@ -4,6 +4,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { TaskService } from '../task.service';
 import { Task } from '../task';
 import { DialogService } from '../../ui/dialog.service';
+import { LoadingService } from '../../loading.service';
 
 @Component({
   selector: 'juno-task-list',
@@ -13,7 +14,10 @@ import { DialogService } from '../../ui/dialog.service';
 export class TaskListComponent implements OnInit {
   topTasks: Task[];
 
-  constructor(private taskService : TaskService, private dialogService: DialogService ) { }
+  constructor(
+    private taskService : TaskService, 
+    private dialogService: DialogService,
+    public loadingService : LoadingService ) { }
 
   async ngOnInit() {
     this.topTasks = await this.taskService.getTopTasks();
@@ -23,7 +27,7 @@ export class TaskListComponent implements OnInit {
     event.stopPropagation();
     let result = await this.dialogService.showDialog("Are you sure you want to move task "+id+" to trash?");
     if (result) {
-      this.taskService.deleteTask(id);
+      await this.taskService.deleteTask(id);
     }
   }
 

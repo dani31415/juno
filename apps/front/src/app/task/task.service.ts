@@ -1,10 +1,14 @@
 import { Injectable, DoBootstrap } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { TaskServiceService } from './service/task-service.service';
 
 import { Task } from './task'
 import { Form } from '../form';
 
+@Injectable()
 export class TaskService {
+  constructor(private taskServiceService : TaskServiceService ) {}
+
   public editForm : Form<Task>;
 
   private db : {tasks:Task[]} = {
@@ -40,6 +44,7 @@ export class TaskService {
     } else {
       t1.order = t2.order-1;
     }
+    this.saveTask(t1);
     this.sortTasks();
   }
 
@@ -51,17 +56,20 @@ export class TaskService {
     } else {
       t1.order = t2.order+1;
     }
+    this.saveTask(t1);
     this.sortTasks();
   }
 
-  private findTaskById(id: number) : Task {
-    let task: Task;
+  private async findTaskById(id: number) : Promise<Task> {
+    if (id==null) return null;
+    return await this.taskServiceService.findTaskById(id);
+    /* let task: Task;
     for (let t of this.db.tasks) {
       if (t.id==id) {
         task = t;
       }
     }
-    return task;
+    return task;*/
   }
 
   private newTask(task) : Task {
@@ -75,35 +83,39 @@ export class TaskService {
     return task;
   }
 
-  private saveTask(task:Task) {
-    let target = this.findTaskById(task.id);
+  private async saveTask(task:Task) {
+    await this.taskServiceService.saveTask(task);
+    /* let target = await this.findTaskById(task.id);
     if (target==null) 
     {
       target = this.newTask(task);
     } else {
       Object.assign(target, task);
-    }
+    }*/
   }
 
-  public deleteTask(id: number) {
-    let task = this.findTaskById(id);
+  public async deleteTask(id: number) {
+    await this.taskServiceService.deleteTask(id);
+    /*let task = await this.findTaskById(id);
     let index = this.db.tasks.indexOf(task);
-    this.db.tasks.splice(index, 1);
+    this.db.tasks.splice(index, 1);*/
   }
 
-  constructor() { 
+  /*constructor() { 
     this.sortTasks();
-  }
+  }*/
 
   async getTopTasks() : Promise<Task[]> {
+    this.db.tasks = await this.taskServiceService.findAll();
+    this.sortTasks();
     return this.db.tasks;
   }
 
-  setCurrentEditId(id: number) {
-    let task : Task = this.findTaskById(id);
+  async setCurrentEditId(id: number) {
+    let task : Task = await this.findTaskById(id);
     this.editForm = new Form<Task>( {
-      submit: () => {
-        this.saveTask(this.editForm.model);
+      submit: async () => {
+        await this.saveTask(this.editForm.model);
       },
       controls: {
         id: new FormControl(),

@@ -14,8 +14,8 @@ describe('TaskService', () => {
     expect(service).toBeTruthy();
   });
   
-  it('edit form validation', () => {
-    service.setCurrentEditId(1);
+  it('edit form validation', async () => {
+    await service.setCurrentEditId(1);
     expect(service.editForm.formGroup.invalid).not.toBeTruthy(); // valid
     //service.editForm.validate();
     //expect(service.editForm.isValid).toBeTruthy();

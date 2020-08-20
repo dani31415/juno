@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { TaskEditComponent } from './task-edit.component';
 import { TaskService } from '../task.service';
@@ -32,6 +33,7 @@ describe('TaskEditComponent', () => {
         //RouterTestingModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        CKEditorModule,
 
         UiModule
       ]

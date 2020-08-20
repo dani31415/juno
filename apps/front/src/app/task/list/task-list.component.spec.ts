@@ -33,7 +33,8 @@ describe('TaskListComponent', () => {
   it('tasks links exists', async () => {
     await fixture.whenStable();
     fixture.detectChanges();
+    //await component.loadingService.finish();
     let as = fixture.nativeElement.querySelectorAll('mat-card');
-    expect(as.length).toEqual(2);
+    expect(as.length).toEqual(3);
   });
 });
