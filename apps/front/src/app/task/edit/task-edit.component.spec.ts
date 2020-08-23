@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, TestComponentRenderer } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -14,7 +14,7 @@ import { TestingTaskServiceService } from '../service/testing/testing-task-servi
 describe('TaskEditComponent', () => {
   let component: TaskEditComponent;
   let fixture: ComponentFixture<TaskEditComponent>;
-
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TaskEditComponent, CKEditorComponent ],
@@ -34,7 +34,11 @@ describe('TaskEditComponent', () => {
         },
         {
           provide: Router,
-          useValue: {}
+          useValue: {
+            navigateByUrl(url: string) {
+
+            }
+          }
         }
       ],
       imports: [ 
@@ -54,7 +58,16 @@ describe('TaskEditComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', async () => {
     expect(component).toBeTruthy();
+    expect(component.controls.id.value).toBe(1);
+  });
+
+  it('submit form', async () => {
+    component.controls.title.setValue('new title');
+    await component.onSubmit();
+    let taskService = TestBed.inject<TaskServiceService>(TaskServiceService);
+    let task = await taskService.findTaskById(1);
+    expect(task.title).toBe('new title');
   });
 });
