@@ -65,37 +65,15 @@ export class TaskService {
   private async findTaskById(id: number) : Promise<Task> {
     if (id==null) return null;
     return await this.taskServiceService.findTaskById(id);
-    /* let task: Task;
-    for (let t of this.db.tasks) {
-      if (t.id==id) {
-        task = t;
-      }
-    }
-    return task;*/
   }
-
 
   private async saveTask(task:Task) {
     await this.taskServiceService.saveTask(task);
-    /* let target = await this.findTaskById(task.id);
-    if (target==null) 
-    {
-      target = this.newTask(task);
-    } else {
-      Object.assign(target, task);
-    }*/
   }
 
   public async deleteTask(id: number) {
     await this.taskServiceService.deleteTask(id);
-    /*let task = await this.findTaskById(id);
-    let index = this.db.tasks.indexOf(task);
-    this.db.tasks.splice(index, 1);*/
   }
-
-  /*constructor() { 
-    this.sortTasks();
-  }*/
 
   async getTopTasks() : Promise<Task[]> {
     this.db.tasks = await this.taskServiceService.findAll();
