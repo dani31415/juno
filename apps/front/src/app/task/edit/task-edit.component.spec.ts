@@ -10,6 +10,7 @@ import { UiModule } from '../../ui/ui.module';
 import { CKEditorComponent } from '../../ui/testing/ckeditor/ckeditor.component';
 import { TaskServiceService } from '../service/task-service.service';
 import { TestingTaskServiceService } from '../service/testing/testing-task-service.service';
+import { isNullOrUndefined } from 'util';
 
 describe('TaskEditComponent', () => {
   let component: TaskEditComponent;
@@ -35,8 +36,9 @@ describe('TaskEditComponent', () => {
         {
           provide: Router,
           useValue: {
+            toNavigate:null,
             navigateByUrl(url: string) {
-
+              this.toNavigate = url;
             }
           }
         }
@@ -63,11 +65,21 @@ describe('TaskEditComponent', () => {
     expect(component.controls.id.value).toBe(1);
   });
 
-  it('submit form', async () => {
+  it('submit form saves to repository', async () => {
     component.controls.title.setValue('new title');
     await component.onSubmit();
     let taskService = TestBed.inject<TaskServiceService>(TaskServiceService);
     let task = await taskService.findTaskById(1);
     expect(task.title).toBe('new title');
+    let router = TestBed.inject<Router>(Router);
+    expect(router['toNavigate']).toBe('/task/list');
+  });
+
+  it('title is required', async () => {
+    component.controls.title.setValue('');
+    await component.onSubmit();
+    expect(component.controls.title.invalid).toBeTruthy();
+    let router = TestBed.inject<Router>(Router);
+    expect(router['toNavigate']).toBeNull();
   });
 });
