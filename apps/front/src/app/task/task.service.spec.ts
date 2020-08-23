@@ -2,20 +2,19 @@ import { TestBed } from '@angular/core/testing';
 
 import { TaskService } from './task.service';
 import { TaskRepository } from './repository/task.repository';
-import { TestingTaskServiceService } from './repository/testing/testing-task-service.service';
+import { NgxIndexedDBModule } from '../testing/ngx-indexed-db.module';
 
 describe('TaskService', () => {
   let service: TaskService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[],
+      imports:[
+        NgxIndexedDBModule.forRoot(TaskService.sample)
+      ],
       providers:[
         TaskService,
-        {
-          provide:TaskRepository,
-          useClass:TestingTaskServiceService
-        }
+        TaskRepository
       ]});
     service = TestBed.inject(TaskService);
   });

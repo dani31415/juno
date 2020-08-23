@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
-import * as EditorInline from '@ckeditor/ckeditor5-build-inline';
 
 import { TaskRepository } from './task.repository';
 
@@ -26,7 +25,6 @@ const dbConfig: DBConfig  = {
     CommonModule
   ],
   providers: [
-    EditorInline,
     TaskRepository
   ],
 })

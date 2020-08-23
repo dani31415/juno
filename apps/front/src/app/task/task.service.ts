@@ -13,8 +13,8 @@ export class TaskService {
   
   private db : {tasks:Task[]} = {tasks:[]};
 
-  public static readonly sample : {tasks:Task[]} = {
-    tasks: [
+  public static readonly sample : {Task:Task[]} = {
+    Task: [
       {
         id:1,
         title:'Purchase computer',

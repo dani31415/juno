@@ -9,7 +9,7 @@ import { UiModule } from '../../ui/ui.module';
 //import { CKEditorComponent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import { CKEditorComponent } from '../../ui/testing/ckeditor/ckeditor.component';
 import { TaskRepository } from '../repository/task.repository';
-import { TestingTaskServiceService } from '../repository/testing/testing-task-service.service';
+import { NgxIndexedDBModule } from '../../testing/ngx-indexed-db.module';
 
 describe('TaskEditComponent', () => {
   let component: TaskEditComponent;
@@ -19,11 +19,8 @@ describe('TaskEditComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TaskEditComponent, CKEditorComponent ],
       providers: [ 
-        TaskService, 
-        {
-          provide: TaskRepository,
-          useClass: TestingTaskServiceService
-        }, 
+        TaskService,
+        TaskRepository,
         {
           provide: ActivatedRoute,
           useValue: {
@@ -47,7 +44,8 @@ describe('TaskEditComponent', () => {
         ReactiveFormsModule,
         BrowserAnimationsModule,
 
-        UiModule
+        UiModule,
+        NgxIndexedDBModule.forRoot(TaskService.sample)
       ]
     })
     .compileComponents();

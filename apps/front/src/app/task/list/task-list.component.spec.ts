@@ -7,7 +7,7 @@ import { TaskListComponent } from './task-list.component';
 import { TaskService } from '../task.service';
 import { UiModule } from '../../ui/ui.module';
 import { TaskRepository } from '../repository/task.repository';
-import { TestingTaskServiceService } from '../repository/testing/testing-task-service.service';
+import { NgxIndexedDBModule } from '../../testing/ngx-indexed-db.module';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
@@ -16,11 +16,18 @@ describe('TaskListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TaskListComponent ],
-      providers: [ TaskService, {
-        provide: TaskRepository,
-        useClass: TestingTaskServiceService
-      } ],
-      imports: [ RouterTestingModule, MatCardModule, MatIconModule, UiModule ]
+      providers: [ 
+        TaskService, 
+        TaskRepository,
+      ],
+      imports: [ 
+        RouterTestingModule, 
+        MatCardModule, 
+        MatIconModule, 
+        UiModule, 
+        
+        NgxIndexedDBModule.forRoot(TaskService.sample)
+      ]
     })
     .compileComponents();
   }));
