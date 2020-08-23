@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { TaskListComponent } from './task-list.component';
 import { TaskService } from '../task.service';
 import { UiModule } from '../../ui/ui.module';
+import { TaskServiceService } from '../service/task-service.service';
+import { TestingTaskServiceService } from '../service/testing/testing-task-service.service';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
@@ -14,7 +16,10 @@ describe('TaskListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TaskListComponent ],
-      providers: [ TaskService ],
+      providers: [ TaskService, {
+        provide: TaskServiceService,
+        useClass: TestingTaskServiceService
+      } ],
       imports: [ RouterTestingModule, MatCardModule, MatIconModule, UiModule ]
     })
     .compileComponents();

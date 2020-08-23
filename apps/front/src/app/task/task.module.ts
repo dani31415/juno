@@ -15,11 +15,10 @@ import { TaskRouterModule } from './task-router.module';
 import { TaskEditComponent } from './edit/task-edit.component';
 import { UiModule } from '../ui/ui.module';
 import { TaskServiceModule } from './service/task-service.module';
-import { TaskServiceService } from './service/task-service.service';
 
 @NgModule({
   providers: [
-    TaskService,
+    TaskService
   ],
   imports: [
     CommonModule,

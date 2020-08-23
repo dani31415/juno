@@ -10,8 +10,10 @@ export class TaskService {
   constructor(private taskServiceService : TaskServiceService ) {}
 
   public editForm : Form<Task>;
+  
+  private db : {tasks:Task[]} = {tasks:[]};
 
-  private db : {tasks:Task[]} = {
+  public static readonly sample : {tasks:Task[]} = {
     tasks: [
       {
         id:1,
@@ -72,16 +74,6 @@ export class TaskService {
     return task;*/
   }
 
-  private newTask(task) : Task {
-    let id = 0;
-    for (let t of this.db.tasks) {
-      id = Math.max(t.id,id);
-    }
-    id++;
-    task.id = id;
-    this.db.tasks.push(task);
-    return task;
-  }
 
   private async saveTask(task:Task) {
     await this.taskServiceService.saveTask(task);

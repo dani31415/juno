@@ -2,11 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+//import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { TaskEditComponent } from './task-edit.component';
 import { TaskService } from '../task.service';
 import { UiModule } from '../../ui/ui.module';
+import { CKEditorComponent } from '../../ui/testing/ckeditor/ckeditor.component';
+import { TaskServiceService } from '../service/task-service.service';
+import { TestingTaskServiceService } from '../service/testing/testing-task-service.service';
 
 describe('TaskEditComponent', () => {
   let component: TaskEditComponent;
@@ -14,8 +17,13 @@ describe('TaskEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaskEditComponent ],
-      providers: [ TaskService,
+      declarations: [ TaskEditComponent, CKEditorComponent ],
+      providers: [ 
+        TaskService, 
+        {
+          provide: TaskServiceService,
+          useClass: TestingTaskServiceService
+        }, 
         {
           provide: ActivatedRoute,
           useValue: {
@@ -27,13 +35,12 @@ describe('TaskEditComponent', () => {
         {
           provide: Router,
           useValue: {}
-        }],
+        }
+      ],
       imports: [ 
         FormsModule,
-        //RouterTestingModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        CKEditorModule,
 
         UiModule
       ]

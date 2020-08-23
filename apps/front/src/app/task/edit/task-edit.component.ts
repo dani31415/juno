@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import * as EditorInline from '@ckeditor/ckeditor5-build-inline';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+import * as EditorInline from '@ckeditor/ckeditor5-build-inline';
 
 import { TaskService } from '../task.service';
-
 @Component({
   selector: 'juno-task-edit',
   templateUrl: './task-edit.component.html',
@@ -14,11 +13,14 @@ import { TaskService } from '../task.service';
 })
 export class TaskEditComponent implements OnInit {
   //@ViewChild('title') title;
-  public Editor = EditorInline;
+  public editor = EditorInline;
   controls : { [K:string]:AbstractControl };
   formGroup: FormGroup;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, public taskService : TaskService) { }
+  constructor(
+    private router: Router, 
+    private activatedRoute: ActivatedRoute, 
+    public taskService : TaskService) { }
 
   async ngOnInit() {
     this.activatedRoute.params.subscribe( async params => {
