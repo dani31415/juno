@@ -1,13 +1,13 @@
 import { Injectable, DoBootstrap } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { TaskServiceService } from './service/task-service.service';
+import { TaskRepository } from './repository/task.repository';
 
 import { Task } from './task'
 import { Form } from '../form';
 
 @Injectable()
 export class TaskService {
-  constructor(private taskServiceService : TaskServiceService ) {}
+  constructor(private taskRepository : TaskRepository ) {}
 
   public editForm : Form<Task>;
   
@@ -64,19 +64,19 @@ export class TaskService {
 
   private async findTaskById(id: number) : Promise<Task> {
     if (id==null) return null;
-    return await this.taskServiceService.findTaskById(id);
+    return await this.taskRepository.findTaskById(id);
   }
 
   private async saveTask(task:Task) {
-    await this.taskServiceService.saveTask(task);
+    await this.taskRepository.saveTask(task);
   }
 
   public async deleteTask(id: number) {
-    await this.taskServiceService.deleteTask(id);
+    await this.taskRepository.deleteTask(id);
   }
 
   async getTopTasks() : Promise<Task[]> {
-    this.db.tasks = await this.taskServiceService.findAll();
+    this.db.tasks = await this.taskRepository.findAll();
     this.sortTasks();
     return this.db.tasks;
   }

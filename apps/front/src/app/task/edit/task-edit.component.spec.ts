@@ -2,15 +2,14 @@ import { async, ComponentFixture, TestBed, TestComponentRenderer } from '@angula
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-//import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { TaskEditComponent } from './task-edit.component';
 import { TaskService } from '../task.service';
 import { UiModule } from '../../ui/ui.module';
+//import { CKEditorComponent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import { CKEditorComponent } from '../../ui/testing/ckeditor/ckeditor.component';
-import { TaskServiceService } from '../service/task-service.service';
-import { TestingTaskServiceService } from '../service/testing/testing-task-service.service';
-import { isNullOrUndefined } from 'util';
+import { TaskRepository } from '../repository/task.repository';
+import { TestingTaskServiceService } from '../repository/testing/testing-task-service.service';
 
 describe('TaskEditComponent', () => {
   let component: TaskEditComponent;
@@ -22,7 +21,7 @@ describe('TaskEditComponent', () => {
       providers: [ 
         TaskService, 
         {
-          provide: TaskServiceService,
+          provide: TaskRepository,
           useClass: TestingTaskServiceService
         }, 
         {
@@ -68,8 +67,8 @@ describe('TaskEditComponent', () => {
   it('submit form saves to repository', async () => {
     component.controls.title.setValue('new title');
     await component.onSubmit();
-    let taskService = TestBed.inject<TaskServiceService>(TaskServiceService);
-    let task = await taskService.findTaskById(1);
+    let taskRepository = TestBed.inject<TaskRepository>(TaskRepository);
+    let task = await taskRepository.findTaskById(1);
     expect(task.title).toBe('new title');
     let router = TestBed.inject<Router>(Router);
     expect(router['toNavigate']).toBe('/task/list');

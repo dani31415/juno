@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { TaskService } from './task.service';
-import { TaskServiceService } from './service/task-service.service';
-import { TestingTaskServiceService } from './service/testing/testing-task-service.service';
+import { TaskRepository } from './repository/task.repository';
+import { TestingTaskServiceService } from './repository/testing/testing-task-service.service';
 
 describe('TaskService', () => {
   let service: TaskService;
@@ -13,7 +13,7 @@ describe('TaskService', () => {
       providers:[
         TaskService,
         {
-          provide:TaskServiceService,
+          provide:TaskRepository,
           useClass:TestingTaskServiceService
         }
       ]});

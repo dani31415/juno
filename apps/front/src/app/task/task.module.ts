@@ -14,7 +14,7 @@ import { TaskService } from './task.service';
 import { TaskRouterModule } from './task-router.module';
 import { TaskEditComponent } from './edit/task-edit.component';
 import { UiModule } from '../ui/ui.module';
-import { TaskServiceModule } from './service/task-service.module';
+import { TaskRepositoryModule } from './repository/task.repository.module';
 
 @NgModule({
   providers: [
@@ -34,7 +34,7 @@ import { TaskServiceModule } from './service/task-service.module';
     CKEditorModule,
 
     UiModule,
-    TaskServiceModule
+    TaskRepositoryModule
   ],
   declarations: [
     TaskListComponent,

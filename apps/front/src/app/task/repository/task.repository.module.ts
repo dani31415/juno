@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 import * as EditorInline from '@ckeditor/ckeditor5-build-inline';
 
-import { TaskServiceService } from './task-service.service';
+import { TaskRepository } from './task.repository';
 
 const dbConfig: DBConfig  = {
   name: 'JunoTask',
@@ -27,7 +27,7 @@ const dbConfig: DBConfig  = {
   ],
   providers: [
     EditorInline,
-    TaskServiceService
+    TaskRepository
   ],
 })
-export class TaskServiceModule { }
+export class TaskRepositoryModule { }

@@ -3,7 +3,7 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Task } from '../task';
 
 @Injectable()
-export class TaskServiceService {
+export class TaskRepository {
 
   constructor(private dbService: NgxIndexedDBService) { }
 
