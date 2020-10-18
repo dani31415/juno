@@ -6,6 +6,8 @@ Features
 - Responsive
 - Modularization
   - Module for Tasks
+  - Module for Tables
+  - Folder for shared components ```ui```
 - Accessibility (inherited from material components).
 - Unit testing with [Jest](https://jestjs.io).
 - Persistence with [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) (in browser data base).

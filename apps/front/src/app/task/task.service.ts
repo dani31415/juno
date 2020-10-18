@@ -2,11 +2,12 @@ import { Injectable, DoBootstrap } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { TaskRepository } from './repository/task.repository';
 
+import { ModelInterface } from '../ui/list/model.interface';
 import { Task } from './task'
 import { Form } from '../form';
 
 @Injectable()
-export class TaskService {
+export class TaskService implements ModelInterface {
   constructor(private taskRepository : TaskRepository ) {}
 
   public editForm : Form<Task>;
@@ -71,11 +72,11 @@ export class TaskService {
     await this.taskRepository.saveTask(task);
   }
 
-  public async deleteTask(id: number) {
+  public async deleteItem(id: number) {
     await this.taskRepository.deleteTask(id);
   }
 
-  async getTopTasks() : Promise<Task[]> {
+  async getItems() : Promise<Task[]> {
     this.db.tasks = await this.taskRepository.findAll();
     this.sortTasks();
     return this.db.tasks;
