@@ -9,11 +9,10 @@ const routes: Routes = [
     path: 'list',
     component: TableListComponent
   },
-  /*{
+  {
     path: 'edit/:id',
-    component: TaskEditComponent
-  }
-  ,*/
+    component: TableEditComponent
+  },
   {
     path: 'new',
     component: TableEditComponent

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { Table } from './table';
+import { TableService } from './table.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,15 +13,36 @@ export class TableGridService {
   public id : number;
   public formGroup : FormGroup;
 
-  constructor() { 
-    this.rows = [ [ 'bed', 'king' ], [ 'size', '60 m2' ] ];
+  constructor(private tableService : TableService) { 
     this.formGroup = new FormGroup( {
       title:this.title
     });
   }
 
+  public async initById(id:number) {
+    let table : Table;
+    if (id==null) {
+      table = {
+        id:null,
+        title:'',
+        rows:[ [' ', ' '], [' ', ' ']]
+      }
+    } else {
+      table = this.tableService.findById(id);
+    };
+    this.id = table.id;
+    this.title.setValue(table.title);
+    this.rows = table.rows;
+  }
+
   public async save() {
-    // TODO implementme
+    let table : Table;
+    table = {
+      id:this.id,
+      title:this.title.value,
+      rows:this.rows
+    };
+    this.tableService.save(table);
   }
 
 }

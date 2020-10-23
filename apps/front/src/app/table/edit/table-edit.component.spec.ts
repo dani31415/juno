@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TableEditComponent } from './table-edit.component';
 import { UiModule } from '../../ui/ui.module';
 import { TableGridComponent } from '../grid/table-grid.component';
+import { TableService } from '../table.service';
 
 describe('TableEditComponent', () => {
   let component: TableEditComponent;
@@ -17,6 +18,7 @@ describe('TableEditComponent', () => {
         TableEditComponent,
         TableGridComponent ],
       providers: [
+        TableService,
         {
           provide: ActivatedRoute,
           useValue: {

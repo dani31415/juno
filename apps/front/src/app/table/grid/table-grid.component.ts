@@ -17,20 +17,10 @@ export class TableGridComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    if (this.rows==null) this.rows = [[' ']];
-    // Clone this._dataRows into _rows and _dataRows
-    this._rows = TableGridComponent.clone(this.rows);
-    this._dataRows = TableGridComponent.clone(this.rows);
-
-    // Add empty row  and column to the end
-    TableGridComponent.addColumn(this._rows, ' ');
-    this.nCols = this._rows[0].length;
-    this._rows.push(TableGridComponent.emptyRow(this.nCols));
+    // Using ngOnChanges instead
   }
 
   public onChange(event,i,j) {
-    console.log(event.target.innerHTML);
-    console.log(i,j);
     let elem = document.getElementById('cell-'+i+'-'+j);
     if (j==this.nCols-1) { // Add column
       TableGridComponent.addColumn(this._rows,' ');
@@ -84,7 +74,20 @@ export class TableGridComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(changes) {
-    //console.log('changes');
+    if (changes.rows) {
+      let eq = TableGridComponent.equals(changes.rows.currentValue, this._dataRows);
+      console.log('changes. equals=',eq)
+      if (!eq) {
+        // Clone this._dataRows into _rows and _dataRows
+        this._rows = TableGridComponent.clone(changes.rows.currentValue);
+        this._dataRows = TableGridComponent.clone(changes.rows.currentValue);
+    
+        // Add empty row  and column to the end
+        TableGridComponent.addColumn(this._rows, ' ');
+        this.nCols = this._rows[0].length;
+        this._rows.push(TableGridComponent.emptyRow(this.nCols));
+      }
+    }
   }
 
   public static emptyRow(n) {
@@ -112,4 +115,22 @@ export class TableGridComponent implements OnInit, OnChanges {
     }
     return output;
   }
+
+  public static equals(grid1:string[][], grid2:string[][]) {
+    if (grid1==grid2) return true;
+    if (grid1==null || grid2==null) return false;
+    if (grid1.length!=grid2.length) return false;
+    for (let i=0;i<grid1.length;i++) {
+      let row1 = grid1[i];
+      let row2 = grid2[i];
+      if (row1==row2) continue;
+      if (row1==null || row2==null) return false;
+      if (row1.length!=row2.length) return false;
+      for (let j=0;j<row1.length;j++) {
+        if (row1[j]!=row2[j]) return false;
+      }
+    }
+    return true;
+  }
+
 } 

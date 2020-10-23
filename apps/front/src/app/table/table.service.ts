@@ -12,15 +12,18 @@ export class TableService implements ModelInterface {
   public static sample = [
     {
       id:1,
-      title:"House"
+      title:"House",
+      rows:[['Bet size','king'],['Flat size','60 m2']]
     },
     {
       id:2,
-      title:"Passwords"
+      title:"Passwords",
+      rows:[['2']]
     },
     {
       id:3,
-      title:"Vocabulary"
+      title:"Vocabulary",
+      rows:[['3']]
     }
   ]
   constructor() { 
@@ -57,5 +60,26 @@ export class TableService implements ModelInterface {
       if (this.items[i].id==id) return i;
     }
     return -1;
+  }
+
+  public findById(id:number) : Table {
+    let i = this.indexById(id);
+    if (i>=0) return this.items[i];
+    return null;
+  }
+
+  public save(table:Table) {
+    if (!table.id) {
+      // Get an unused id
+      let id = 0;
+      for (let item of this.items) {
+        id = Math.max(item.id,id);
+      }
+      table.id = id+1;
+      this.items.push(table);
+    } else {
+      let dest = this.findById(table.id);
+      Object.assign(dest,table);
+    }
   }
 }

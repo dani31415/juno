@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { TableGridService } from '../table-grid.service';
@@ -12,12 +12,18 @@ import { TableGridService } from '../table-grid.service';
 export class TableEditComponent implements OnInit {
   constructor(
     public tableGridService : TableGridService,
-    private router : Router ) { }
+    private router : Router,
+    private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.tableGridService.initById(null);
+    this.activatedRoute.params.subscribe( async params => {
+      await this.tableGridService.initById(params['id']);
+    });
   }
 
   public onGridChanged(event) {
+    console.log('grid changed',event);
     this.tableGridService.rows = event;
   }
 
