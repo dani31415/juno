@@ -20,3 +20,20 @@ header {
 main {
 }
 
+.toolbar-narrower {
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.toolbar-content {
+  width:100%;
+}
+
+.toolbar-content a {
+  font-size:110%;
+}
+
+::ng-deep mat-ink-bar {
+  background-color: red !important;
+}

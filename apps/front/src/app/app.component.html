@@ -1,9 +1,11 @@
-<header class="flex">
-  <a routerLink='/task/list'>Tasks</a>
-  <span>&nbsp;</span>
-  <a routerLink='/table/list'>Tables</a>
-</header>
+<nav mat-tab-nav-bar backgroundColor='primary'>
+  <div class="toolbar-content">
+    <div class="toolbar-narrower">
+      <a mat-tab-link routerLink='/task/list' [active]="rootPath=='task'">Tasks</a>
+      <a mat-tab-link routerLink='/table/list' [active]="rootPath=='table'">Tables</a>
+    </div>
+    </div>
+</nav>
 <main>
   <router-outlet></router-outlet>  
 </main>
-

@@ -26,6 +26,11 @@ mat-card .delete {
     padding: 1ex;
 }
 
+button[mat-icon-button] {
+    width:38px;
+    overflow: clip;
+}
+
 .text-right {
     text-align: right;
 }
