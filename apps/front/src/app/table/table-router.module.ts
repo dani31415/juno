@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TableListComponent } from './list/table-list.component';
-//import { TaskEditComponent } from './edit/task-edit.component';
+import { TableEditComponent } from './edit/table-edit.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
 
 const routes: Routes = [
@@ -13,11 +13,11 @@ const routes: Routes = [
     path: 'edit/:id',
     component: TaskEditComponent
   }
-  ,
+  ,*/
   {
     path: 'new',
-    component: TaskEditComponent
-  }*/
+    component: TableEditComponent
+  }
 ];
 
 @NgModule({

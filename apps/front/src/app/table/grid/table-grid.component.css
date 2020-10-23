@@ -1,0 +1,21 @@
+.main-grid {
+    border-collapse: collapse;
+    border: 1px solid lightgray;
+}
+
+td:last-child, tr:last-child {
+    min-width:2em;
+    height:1em;
+    background-color: #f0f0f0;
+}
+
+td {
+    padding:0 0.3ex;
+    border: 1px solid lightgray;
+    min-width:1em;
+}
+
+::ng-deep ui-input[label] .mat-form-field {
+    margin-top:0.5ex;
+    margin-bottom:0;
+}

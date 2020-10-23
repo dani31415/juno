@@ -1,0 +1,6 @@
+<form (ngSubmit)='onSubmit()' [formGroup]='tableGridService.formGroup'>
+    <ui-input [control]='tableGridService.title' label='Title' placeholder="Do the laundry"></ui-input>
+    <ui-table-grid [rows]="tableGridService.rows" (changed)="onGridChanged($event)"></ui-table-grid>
+    <br>
+    <button mat-raised-button color="primary">Submit</button>
+</form>

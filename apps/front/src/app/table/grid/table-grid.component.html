@@ -1,0 +1,5 @@
+<table class='main-grid'>
+    <tr *ngFor="let row of _rows; index as i">
+        <td id='cell-{{i}}-{{j}}' (keydown)='onKeyDown($event,i,j)' (input)='onChange($event,i,j)' contenteditable='true' *ngFor='let cell of row; index as j'>{{cell}}</td>
+    </tr>
+</table>
