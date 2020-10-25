@@ -1,6 +1,12 @@
 # Juno
 
-Features
+## Description
+
+An **Angular** application that implements a task manger and sheet-like personal pages.
+
+Yet another task manager but the main objective was to create an Angular application from scratch with a nice software design from the beginning. In the roadmap is to provide an equivalent application in **React**.
+
+## Features
 
 - Material design with [Angular Material](https://material.angular.io/).
 - Responsive
