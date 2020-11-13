@@ -4,7 +4,7 @@
             <ui-input [control]='controls.title' label='Title' placeholder="Do the laundry">
             </ui-input>
         </div>
-        <label class="container" style="position:relative;top:1ex;">Description</label>
+        <label class="container">Description</label>
         <ckeditor [config]="{placeholder: 'Type the description here!'}" [editor]='editor' [data]='controls.description.value' (change)='ckEditorChange(controls.description, $event)'>
         </ckeditor>
         <div class="container">
