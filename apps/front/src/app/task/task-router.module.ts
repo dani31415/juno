@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TaskListComponent } from './list/task-list.component';
 import { TaskEditComponent } from './edit/task-edit.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
 
 const routes: Routes = [
   {
@@ -21,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), FormsModule],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class TaskRouterModule { }
