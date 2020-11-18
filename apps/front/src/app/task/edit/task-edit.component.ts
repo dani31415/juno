@@ -16,6 +16,7 @@ export class TaskEditComponent implements OnInit {
   public editor = EditorInline;
   controls : { [K:string]:AbstractControl };
   formGroup: FormGroup;
+  ckeditorConfig = {placeholder: 'Type the description here!'};
 
   constructor(
     private router: Router, 

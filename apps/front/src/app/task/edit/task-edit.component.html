@@ -5,7 +5,7 @@
             </ui-input>
         </div>
         <label class="container">Description</label>
-        <ckeditor [config]="{placeholder: 'Type the description here!'}" [editor]='editor' [data]='controls.description.value' (change)='ckEditorChange(controls.description, $event)'>
+        <ckeditor [config]="ckeditorConfig" [editor]='editor' [data]='controls.description.value' (change)='ckEditorChange(controls.description, $event)'>
         </ckeditor>
         <div class="container">
             <button mat-raised-button color="primary">Submit</button>
