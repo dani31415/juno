@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [
+const routesForRoot: Routes = [
   {
     path:'task',
     loadChildren: () => import('./task/task.module').then(m => m.TaskModule)
@@ -13,7 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routesForRoot)],
   exports: [RouterModule]
 })
 export class AppRouterModule { }

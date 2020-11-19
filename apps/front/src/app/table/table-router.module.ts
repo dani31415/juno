@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TableListComponent } from './list/table-list.component';
 import { TableEditComponent } from './edit/table-edit.component';
 
-const routes: Routes = [
+const routesForChild: Routes = [
   {
     path: 'list',
     component: TableListComponent
@@ -19,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesForChild)],
   exports: [RouterModule]
 })
 export class TableRouterModule { }

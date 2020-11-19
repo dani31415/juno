@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TaskListComponent } from './list/task-list.component';
 import { TaskEditComponent } from './edit/task-edit.component';
 
-const routes: Routes = [
+const routesForChild: Routes = [
   {
     path: 'list',
     component: TaskListComponent
@@ -20,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesForChild)],
   exports: [RouterModule]
 })
 export class TaskRouterModule { }
