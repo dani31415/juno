@@ -5,10 +5,10 @@ import { Task } from '../task';
 @Injectable()
 export class TaskRepository {
 
-  constructor(private dbService: NgxIndexedDBService) { }
+  constructor(private dbService: NgxIndexedDBService<Task>) { }
 
   public async findTaskById(id: number) : Promise<Task> {
-    let task = await this.dbService.getByID<Task>('Task',Number(id));
+    let task = await this.dbService.getByID('Task',Number(id)).toPromise();
     return task;
   }
 
@@ -20,10 +20,10 @@ export class TaskRepository {
     if (target==null) 
     {
       delete(task.id); // set to undefined
-      let index = await this.dbService.add<Task>('Task', task);
+      let index = await this.dbService.add('Task', task).toPromise();
       task.id = index;
     } else {
-      await this.dbService.update<Task>('Task', task);
+      await this.dbService.update('Task', task).toPromise();
     }
   }
 
@@ -32,6 +32,6 @@ export class TaskRepository {
   }
 
   public async findAll() : Promise<Task[]> {
-    return await this.dbService.getAll<Task>('Task');
+    return await this.dbService.getAll('Task').toPromise();
   }
 }
