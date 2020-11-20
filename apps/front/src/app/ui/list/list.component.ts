@@ -14,8 +14,8 @@ import { LoadingService } from '../../loading.service';
 export class ListComponent implements OnInit {
   items: ItemInterface[];
   @Input() model : ModelInterface;
-  @Input() newPath : String;
-  @Input() editPath : String;
+  @Input() newPath : string;
+  @Input() editPath : string;
 
   constructor(
     private dialogService: DialogService,
