@@ -28,7 +28,7 @@ export class TaskRepository {
   }
 
   public async deleteTask(id: number) {
-    await this.dbService.delete('Task',id);
+    await this.dbService.delete('Task',id).toPromise();
   }
 
   public async findAll() : Promise<Task[]> {
