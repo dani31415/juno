@@ -23,11 +23,14 @@ export class TaskEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute, 
     public taskService : TaskService) { }
 
-  async ngOnInit() {
-    this.activatedRoute.params.subscribe( async params => {
-      await this.taskService.setCurrentEditId(params['id']);
-      this.formGroup = this.taskService.editForm.formGroup;
-      this.controls = this.formGroup.controls;
+  async ngOnInit() : Promise<void> {
+    return new Promise ( (resolve,reject ) => {
+        this.activatedRoute.params.subscribe(async (params) => {
+            await this.taskService.setCurrentEditId(params['id']);
+            this.formGroup = this.taskService.editForm.formGroup;
+            this.controls = this.formGroup.controls;
+            resolve();
+        });
     });
   }
 
