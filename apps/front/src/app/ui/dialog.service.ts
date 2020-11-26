@@ -14,9 +14,9 @@ export class DialogService {
     return new Promise( (resolve,reject) => {
       let dialogRef : MatDialogRef<DialogComponent,boolean>;
       dialogRef = this.dialog.open(DialogComponent, {
-        disableClose: false
+        disableClose: false,
+        data: { message }
       });
-      dialogRef.componentInstance.confirmMessage = message;
 
       dialogRef.afterClosed().subscribe( (result:boolean) => {
         if(result) {

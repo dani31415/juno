@@ -38,7 +38,8 @@ export class TaskEditComponent implements OnInit {
     control.setValue( editor.getData() );
   }
 
-  async onSubmit() {
+  async onSubmit(event) {
+    event.preventDefault(); // needed for react
     if (!this.formGroup.invalid) {
       await this.taskService.editForm.submit();
       this.router.navigateByUrl('/task/list');

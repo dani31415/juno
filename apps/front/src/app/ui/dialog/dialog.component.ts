@@ -1,6 +1,5 @@
-// https://stackoverflow.com/questions/41684114/angular-2-easy-way-to-make-a-confirmation-dialog
-import { MatDialogRef } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'juno-dialog',
@@ -10,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class DialogComponent implements OnInit {
   public confirmMessage:string;
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {message: string}, public dialogRef: MatDialogRef<DialogComponent>) { 
+    this.confirmMessage = data.message;
+  }
 
   ngOnInit(): void {
   }

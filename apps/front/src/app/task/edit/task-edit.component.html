@@ -1,5 +1,5 @@
 <!--div class="container"-->
-    <form *ngIf="formGroup" (ngSubmit)='onSubmit()' [formGroup]='formGroup'>
+    <form *ngIf="formGroup" (ngSubmit)='onSubmit($event)' [formGroup]='formGroup'>
         <div class='container'>
             <ui-input [control]='controls.title' label='Title' placeholder="Do the laundry">
             </ui-input>
