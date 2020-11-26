@@ -22,15 +22,26 @@ export class ListComponent implements OnInit {
     public loadingService : LoadingService ) { }
 
   async ngOnInit() {
-    this.items = await this.model.getItems();
+    await this.loadItems();
   }
 
-  async deleteTask(id:number, event:Event) {
+  async deleteTask(id:number, event) {
     event.stopPropagation();
     let result = await this.dialogService.showDialog("Are you sure you want to move task "+id+" to trash?");
     if (result) {
       await this.model.deleteItem(id);
+      await this.loadItems();
+      this.update();
     }
+  }
+
+  async loadItems() {
+    this.items = await this.model.getItems();
+  }
+
+  private update() {
+    if (this['forceUpdate']) 
+      this['forceUpdate']();
   }
 
   drop(event:CdkDragDrop<string[]>) {
