@@ -16,9 +16,12 @@ export class TableEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
-    await this.tableGridService.initById(null);
-    this.activatedRoute.params.subscribe( async params => {
-      await this.tableGridService.initById(params['id']);
+    return new Promise ( async (resolve,reject ) => {
+      await this.tableGridService.initById(null);
+      this.activatedRoute.params.subscribe(async (params) => {
+        await this.tableGridService.initById(params['id']);
+        resolve();
+      });
     });
   }
 
@@ -27,7 +30,8 @@ export class TableEditComponent implements OnInit {
     this.tableGridService.rows = event;
   }
 
-  public async onSubmit() {
+  public async onSubmit(event) {
+    event.preventDefault(); // needed for React (babelus)
     if (!this.tableGridService.formGroup.invalid) {
       await this.tableGridService.save();
       this.router.navigateByUrl('/table/list');

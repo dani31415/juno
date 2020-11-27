@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import * as EditorInline from '@ckeditor/ckeditor5-build-inline';
 
@@ -34,12 +35,14 @@ export class TaskEditComponent implements OnInit {
     });
   }
 
-  ckEditorChange(control: AbstractControl, { editor }: ChangeEvent ) {
+  // editor used in React (babelus)
+  ckEditorChange(control: AbstractControl, event: ChangeEvent, editor?: CKEditor5.Editor ) {
+    editor = editor || event.editor;
     control.setValue( editor.getData() );
   }
 
   async onSubmit(event) {
-    event.preventDefault(); // needed for react
+    event.preventDefault(); // needed for React (babelus)
     if (!this.formGroup.invalid) {
       await this.taskService.editForm.submit();
       this.router.navigateByUrl('/task/list');

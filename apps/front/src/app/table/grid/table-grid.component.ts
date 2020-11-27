@@ -44,6 +44,7 @@ export class TableGridComponent implements OnInit, OnChanges {
     this._dataRows[i][j] = elem.innerHTML;
     
     this.changed.emit(this._dataRows);
+    this.update();
     // Copy table exept last row and column
     /* let output = [];
     for (let i=0;i<this._rows.length-1;i++) {
@@ -86,6 +87,7 @@ export class TableGridComponent implements OnInit, OnChanges {
         TableGridComponent.addColumn(this._rows, ' ');
         this.nCols = this._rows[0].length;
         this._rows.push(TableGridComponent.emptyRow(this.nCols));
+        this.update();
       }
     }
   }
@@ -131,6 +133,11 @@ export class TableGridComponent implements OnInit, OnChanges {
       }
     }
     return true;
+  }
+
+  private update() {
+    if (this['forceUpdate']) 
+      this['forceUpdate']();
   }
 
 } 
